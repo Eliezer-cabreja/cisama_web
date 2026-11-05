@@ -16,7 +16,6 @@ body{
   background:#071426;
 }
 
-/* Imagen de fondo */
 body:before{
   content:"";
   position:fixed;
@@ -79,7 +78,6 @@ h1 span{color:#438eea}
 /* TIENDA */
 .store{padding:55px 7%;min-height:calc(100vh - 85px)}
 
-/* HEADING + TOOLS */
 .store-head{
   display:flex;
   justify-content:space-between;
@@ -122,7 +120,7 @@ h1 span{color:#438eea}
 .store-tools select:focus{border-color:#438eea;background-color:#0d2038;box-shadow:0 0 0 3px #438eea20}
 .store-tools select option{background:#0b1b30;color:#dce8f8}
 
-/* TARJETAS - ahora 3 columnas (más anchas) */
+/* TARJETAS */
 .products-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:start}
 .product-card{
   background:linear-gradient(145deg,#10243d,#0b192c);
@@ -140,23 +138,25 @@ h1 span{color:#438eea}
   box-shadow:0 10px 24px #0007, 0 0 0 1px #ffffff15;
 }
 
-/* Imagen grande */
+/* IMAGEN - ahora ocupa todo el ancho con scale para agrandarla */
 .product-image{
-  height:210px;
+  height:220px;
   background:linear-gradient(145deg,#172f4c,#10243b);
   display:flex;align-items:center;justify-content:center;
   overflow:hidden;position:relative;
-  padding:4px;
+  padding:0;
 }
 .product-image:after{content:"";position:absolute;width:120px;height:120px;background:#438eea;filter:blur(60px);opacity:.12;pointer-events:none}
 .product-image img{
   width:100%;
   height:100%;
   object-fit:contain;
+  object-position:center;
   position:relative;z-index:1;
   transition:transform .4s;
+  transform:scale(1.2);
 }
-.product-card:hover .product-image img{transform:scale(1.06)}
+.product-card:hover .product-image img{transform:scale(1.28)}
 
 .product-info{padding:14px}
 .product-info h3{font-size:15px;font-weight:700;color:#f1f6ff;margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -205,7 +205,7 @@ h1{font-size:58px}
 .search-box{width:100%}
 .store-tools select{width:100%;min-width:0}
 .products-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.product-image{height:180px;padding:4px}
+.product-image{height:190px}
 .product-info{padding:12px}
 .product-info h3{font-size:13px}
 .product-price{font-size:15px}
@@ -218,7 +218,7 @@ nav a{font-size:10px}
 .actions{gap:9px}
 .actions button{font-size:14px}
 .products-grid{grid-template-columns:1fr;gap:12px}
-.product-image{height:220px;padding:6px}
+.product-image{height:230px}
 .product-info{padding:12px}
 .product-info h3{font-size:14px}
 .product-description{font-size:11px;height:32px}
@@ -257,16 +257,13 @@ nav a{font-size:10px}
   </div>
 </header>
 
-<!-- INICIO -->
 <section class="page active" id="inicio">
   <main class="hero">
     <section class="content">
       <h1>Bienvenido a <span>Cisama</span></h1>
-
       <p class="description">
         Formando estudiantes con Valores, Conocimientos y un futuro lleno de oportunidades.
       </p>
-
       <div class="buttons">
         <button class="primary" onclick="cambiarPagina('tienda')">
           EXPLORAR TIENDA <i class="fa-solid fa-arrow-up-right-from-square"></i>
@@ -276,29 +273,24 @@ nav a{font-size:10px}
         </button>
       </div>
     </section>
-
     <div class="product">
       <img src="templates/assets/camisa.png" alt="Camisa liceo">
     </div>
   </main>
 </section>
 
-<!-- TIENDA -->
 <section class="page" id="tienda">
   <main class="store">
-
     <div class="store-head">
       <div class="store-heading">
         <h2>Cisama <span>Tienda</span></h2>
         <p>Encuentra los productos disponibles de Cisama.</p>
       </div>
-
       <div class="store-tools">
         <div class="search-box">
           <i class="fa-solid fa-magnifying-glass"></i>
           <input type="text" id="productSearch" placeholder="Buscar productos...">
         </div>
-
         <select id="categoryFilter">
           <option value="">Todas las categorías</option>
         </select>
@@ -311,7 +303,6 @@ nav a{font-size:10px}
         <p>Cargando productos...</p>
       </div>
     </div>
-
   </main>
 </section>
 
@@ -322,31 +313,23 @@ nav a{font-size:10px}
 
 <script>
 
-// CONFIGURACIÓN API
 const API_URL = "https://api-chicken-runner.monitorealo.online/api/productos";
 const API_ORIGIN = new URL(API_URL).origin;
 
-// ESTADO
 let productos = [];
 let carrito = [];
 let productosCargados = false;
 let cargandoProductos = false;
 
-// NAVEGACIÓN
 function cambiarPagina(nombre){
-
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('nav a[data-page]').forEach(a=>a.classList.remove('active'));
-
   document.getElementById(nombre).classList.add('active');
-
   const link=document.querySelector(`nav a[data-page="${nombre}"]`);
   if(link)link.classList.add('active');
-
   if(nombre==='tienda' && !productosCargados && !cargandoProductos){
     cargarProductos();
   }
-
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -356,83 +339,57 @@ document.querySelectorAll('nav a[data-page]').forEach(link=>{
   });
 });
 
-// CARRITO
 document.getElementById('cartButton').addEventListener('click',()=>{
-
   if(carrito.length===0){
     mostrarToast('Tu carrito está vacío');
     return;
   }
-
   const total=carrito.reduce((s,p)=>s+(p.price*p.quantity),0);
   const detalle=carrito.map(p=>`${p.name} x${p.quantity}`).join('\n');
-
   alert(`TU CARRITO\n\n${detalle}\n\nTotal: RD$ ${total.toFixed(2)}`);
 });
 
 function agregarCarrito(id){
-
   const producto=productos.find(p=>String(p.id)===String(id));
   if(!producto)return;
-
   if(producto.stock<=0){
     mostrarToast('Producto agotado');
     return;
   }
-
   const existente=carrito.find(p=>String(p.id)===String(id));
-
   if(existente){
-
     if(existente.quantity>=producto.stock){
       mostrarToast('No hay más unidades disponibles');
       return;
     }
-
     existente.quantity++;
-
   }else{
     carrito.push({...producto,quantity:1});
   }
-
   actualizarCarrito();
   mostrarToast('Producto agregado al carrito');
 }
 
 function actualizarCarrito(){
-
   const cantidad=carrito.reduce((s,p)=>s+p.quantity,0);
-
   document.getElementById('cartCount').textContent=cantidad;
 }
 
-// NOTIFICACIONES
 let toastTimer;
-
 function mostrarToast(mensaje){
-
   const toast=document.getElementById('toast');
-
   toast.innerHTML=`<i class="fa-solid fa-circle-check"></i> ${mensaje}`;
-
   toast.classList.add('show');
-
   clearTimeout(toastTimer);
-
   toastTimer=setTimeout(()=>{
     toast.classList.remove('show');
   },2500);
 }
 
-// CARGAR PRODUCTOS DESDE FLASK
 async function cargarProductos(){
-
   if(cargandoProductos)return;
-
   cargandoProductos=true;
-
   const grid=document.getElementById('productsGrid');
-
   grid.innerHTML=`
     <div class="loading">
       <i class="fa-solid fa-spinner fa-spin"></i>
@@ -441,12 +398,9 @@ async function cargarProductos(){
   `;
 
   try{
-
     const respuesta=await fetch(API_URL,{
       method:"GET",
-      headers:{
-        "Accept":"application/json"
-      }
+      headers:{"Accept":"application/json"}
     });
 
     if(!respuesta.ok){
@@ -460,23 +414,13 @@ async function cargarProductos(){
     }
 
     productos=data.productos.map(p=>({
-
       id:p.id,
-
       name:String(p.name || ''),
-
       description:String(p.description || ''),
-
       price:Number(p.price),
-
-      image:p.image
-        ? new URL(p.image,API_ORIGIN+'/').href
-        : '',
-
+      image:p.image ? new URL(p.image,API_ORIGIN+'/').href : '',
       category:String(p.category || 'General'),
-
       stock:Number(p.stock ?? 0)
-
     })).filter(p=>
       p.id!==undefined &&
       p.name.length>0 &&
@@ -485,68 +429,44 @@ async function cargarProductos(){
     );
 
     cargarCategorias();
-
     mostrarProductos();
-
     productosCargados=true;
-
     console.log('Productos recibidos:',productos);
 
   }catch(error){
-
     console.error('Error cargando productos:',error);
-
     grid.innerHTML=`
       <div class="error">
         <i class="fa-solid fa-triangle-exclamation"></i>
         <h3>No se pudieron cargar los productos</h3>
         <p style="margin-top:10px">${error.message}</p>
-
         <button class="primary" style="margin-top:20px" onclick="cargarProductos()">
           <i class="fa-solid fa-rotate"></i> Reintentar
         </button>
       </div>
     `;
-
   }finally{
-
     cargandoProductos=false;
-
   }
 }
 
-// CATEGORÍAS
 function cargarCategorias(){
-
   const select=document.getElementById('categoryFilter');
-
   const seleccion=select.value;
-
   const categorias=[...new Set(productos.map(p=>p.category))];
-
   select.innerHTML='<option value="">Todas las categorías</option>';
-
   categorias.forEach(categoria=>{
-
     const option=document.createElement('option');
-
     option.value=categoria;
     option.textContent=categoria;
-
     select.appendChild(option);
-
   });
-
   select.value=seleccion;
 }
 
-// MOSTRAR PRODUCTOS
 function mostrarProductos(){
-
   const grid=document.getElementById('productsGrid');
-
   const busqueda=document.getElementById('productSearch').value.toLowerCase();
-
   const categoria=document.getElementById('categoryFilter').value;
 
   const filtrados=productos.filter(p=>
@@ -558,7 +478,6 @@ function mostrarProductos(){
   grid.innerHTML='';
 
   if(filtrados.length===0){
-
     grid.innerHTML=`
       <div class="empty">
         <i class="fa-solid fa-box-open"></i>
@@ -566,12 +485,10 @@ function mostrarProductos(){
         <p style="margin-top:10px">Intenta con otra búsqueda o categoría.</p>
       </div>
     `;
-
     return;
   }
 
   filtrados.forEach(p=>{
-
     const card=document.createElement('article');
     card.className='product-card';
 
@@ -643,18 +560,12 @@ function mostrarProductos(){
     cantidad.append(iconoCantidad,etiquetaCantidad,valorCantidad);
 
     info.append(titulo,descripcion,footer,cantidad);
-
     card.append(imagen,info);
-
     grid.appendChild(card);
-
   });
-
 }
 
-// FILTROS
 document.getElementById('productSearch').addEventListener('input',mostrarProductos);
-
 document.getElementById('categoryFilter').addEventListener('change',mostrarProductos);
 
 </script>
