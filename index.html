@@ -16,7 +16,7 @@ body{
   background:#071426;
 }
 
-/* Imagen de fondo - más oscura, solo se intuye */
+/* Imagen de fondo */
 body:before{
   content:"";
   position:fixed;
@@ -25,7 +25,6 @@ body:before{
   z-index:-2;
   filter:brightness(.3) saturate(.9);
 }
-/* Capa oscura encima - sin gradientes radiales raros */
 body:after{
   content:"";
   position:fixed;
@@ -34,6 +33,7 @@ body:after{
   z-index:-1;
 }
 
+/* HEADER ESCRITORIO */
 header{
   height:85px;
   padding:0 7%;
@@ -50,7 +50,7 @@ header{
 }
 .logo img{width:180px;height:auto;object-fit:contain}
 nav{display:flex;gap:30px}
-nav a{color:#aebbd0;text-decoration:none;font-size:14px;transition:.3s;cursor:pointer}
+nav a{color:#aebbd0;text-decoration:none;font-size:14px;transition:.3s;cursor:pointer;display:flex;align-items:center;gap:8px;}
 nav a:hover,nav a.active{color:white}
 nav a.active{position:relative}
 nav a.active:after{content:"";position:absolute;bottom:-32px;left:0;width:100%;height:2px;background:#438eea}
@@ -79,8 +79,6 @@ h1 span{color:#438eea}
 
 /* TIENDA */
 .store{padding:55px 7%;min-height:calc(100vh - 85px)}
-
-/* HEADING + TOOLS en la misma fila */
 .store-head{
   display:flex;
   justify-content:space-between;
@@ -94,88 +92,21 @@ h1 span{color:#438eea}
 .store-heading h2{font-size:36px;font-weight:800;letter-spacing:-1px}
 .store-heading h2 span{color:#438eea}
 .store-heading p{color:#899bb5;font-size:14px;margin-top:9px}
-
-/* TOOLS a la derecha */
-.store-tools{
-  display:flex;
-  gap:10px;
-  align-items:center;
-  justify-content:flex-end;
-  flex-wrap:wrap;
-}
-.search-box{
-  position:relative;
-  width:280px;
-  max-width:100%;
-}
-.search-box i{
-  position:absolute;
-  left:14px;
-  top:50%;
-  transform:translateY(-50%);
-  color:#7f93ad;
-  font-size:13px;
-  pointer-events:none;
-  transition:color .25s;
-}
-.search-box input{
-  width:100%;
-  height:42px;
-  background:#0b1b30;
-  border:1px solid #1f3a5a;
-  border-radius:9px;
-  color:white;
-  padding:0 14px 0 38px;
-  outline:none;
-  font-size:13px;
-  transition:.25s;
-}
-.search-box input:focus{
-  border-color:#438eea;
-  background:#0d2038;
-  box-shadow:0 0 0 3px #438eea20;
-}
+.store-tools{display:flex;gap:10px;align-items:center;justify-content:flex-end;flex-wrap:wrap;}
+.search-box{position:relative;width:280px;max-width:100%;}
+.search-box i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#7f93ad;font-size:13px;pointer-events:none;transition:color .25s;}
+.search-box input{width:100%;height:42px;background:#0b1b30;border:1px solid #1f3a5a;border-radius:9px;color:white;padding:0 14px 0 38px;outline:none;font-size:13px;transition:.25s;}
+.search-box input:focus{border-color:#438eea;background:#0d2038;box-shadow:0 0 0 3px #438eea20;}
 .search-box:focus-within i{color:#438eea}
 .search-box input::placeholder{color:#6f849e}
-
-.store-tools select{
-  height:42px;
-  background:#0b1b30;
-  border:1px solid #1f3a5a;
-  border-radius:9px;
-  color:#dce8f8;
-  padding:0 34px 0 13px;
-  outline:none;
-  min-width:170px;
-  cursor:pointer;
-  font-size:13px;
-  transition:.25s;
-  appearance:none;
-  -webkit-appearance:none;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%237f93ad' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
-  background-repeat:no-repeat;
-  background-position:right 13px center;
-}
+.store-tools select{height:42px;background:#0b1b30;border:1px solid #1f3a5a;border-radius:9px;color:#dce8f8;padding:0 34px 0 13px;outline:none;min-width:170px;cursor:pointer;font-size:13px;transition:.25s;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%237f93ad' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");background-repeat:no-repeat;background-position:right 13px center;}
 .store-tools select:hover{border-color:#2a4a6e;background-color:#0d2038}
-.store-tools select:focus{
-  border-color:#438eea;
-  background-color:#0d2038;
-  box-shadow:0 0 0 3px #438eea20;
-}
+.store-tools select:focus{border-color:#438eea;background-color:#0d2038;box-shadow:0 0 0 3px #438eea20;}
 .store-tools select option{background:#0b1b30;color:#dce8f8}
 
-/* TARJETAS - sólidas, legibles */
+/* TARJETAS */
 .products-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px;align-items:start}
-.product-card{
-  background:linear-gradient(145deg,#10243d,#0b192c);
-  border:1px solid #1c3552;
-  border-radius:12px;
-  overflow:hidden;
-  transition:all .3s;
-  position:relative;
-  min-width:0;
-  box-shadow:0 6px 16px #0004;
-}
+.product-card{background:linear-gradient(145deg,#10243d,#0b192c);border:1px solid #1c3552;border-radius:12px;overflow:hidden;transition:all .3s;position:relative;min-width:0;box-shadow:0 6px 16px #0004;}
 .product-card:hover{transform:translateY(-5px);border-color:#438eea;box-shadow:0 12px 30px #0007}
 .product-image{height:165px;background:linear-gradient(145deg,#172f4c,#10243b);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;padding:12px}
 .product-image:after{content:"";position:absolute;width:120px;height:120px;background:#438eea;filter:blur(65px);opacity:.12;pointer-events:none}
@@ -200,73 +131,107 @@ h1 span{color:#438eea}
 .toast{position:fixed;bottom:25px;right:25px;background:#153354;border:1px solid #438eea;padding:15px 22px;border-radius:9px;color:white;z-index:300;transform:translateY(100px);opacity:0;transition:.3s;pointer-events:none;box-shadow:0 8px 25px #0005}
 .toast.show{transform:translateY(0);opacity:1}
 
-/* RESPONSIVE */
+/* =========================================
+   RESPONSIVE (CELULAR Y TABLETS)
+   ========================================= */
+
 @media(max-width:1100px){
-.products-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-header{padding:0 4%}
-nav{gap:18px}
+  .products-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  header{padding:0 4%}
+  nav{gap:20px}
 }
-@media(max-width:750px){
-header{padding:0 4%;height:70px;gap:15px}
-.logo img{width:110px}
-/* Hacemos que el menú se pueda deslizar horizontalmente si no cabe */
-nav{
-  gap:15px; 
-  overflow-x:auto; 
-  white-space:nowrap; 
-  padding-bottom:5px;
-  scrollbar-width:none; /* Oculta scroll en Firefox */
+
+/* CELULARES */
+@media(max-width:850px){
+  header{
+    padding:0 15px;
+    height:75px; /* Header un poco más alto para que respire */
+  }
+  
+  /* Logo un poco más chico para dar espacio */
+  .logo img{width:110px}
+  
+  /* EL ARREGLO DEL MENÚ */
+  nav{
+    flex: 1; /* Toma el espacio del medio */
+    display: flex;
+    justify-content: center; /* Centra los tabs */
+    gap: 18px; /* Separación entre tabs */
+    overflow-x: auto; /* Si no caben, hacen scroll */
+    padding: 10px 0;
+    margin: 0 10px;
+    scrollbar-width: none; /* Oculta la barra fea en Firefox */
+  }
+  nav::-webkit-scrollbar{display:none} /* Oculta la barra en Chrome/Safari */
+  
+  /* Los tabs (Inicio, Tienda...) más grandes y legibles */
+  nav a{
+    font-size: 14px; /* Letra más grande */
+    font-weight: 600;
+    white-space: nowrap; /* Evita que el texto se parta en dos líneas */
+  }
+  
+  /* Ocultamos los íconos en celular para que quede limpio */
+  nav a i{
+    display: none; 
+  }
+  
+  /* La rayita azul del tab activo, la subimos un poco */
+  nav a.active:after{
+    bottom: -10px; 
+    height: 3px; /* Un poco más gruesa */
+    border-radius: 3px;
+  }
+
+  .actions{gap:12px}
+  .actions button{font-size:18px}
+
+  /* HERO (INICIO) */
+  .hero{padding:40px 5%;flex-direction:column;justify-content:center;align-items:flex-start;gap:30px}
+  .content{max-width:100%}
+  h1{font-size:46px;letter-spacing:-2px}
+  .description{font-size:14px;margin:20px 0}
+  .buttons{width:100%;flex-direction:column;align-items:stretch}
+  .primary, .secondary{width:100%;display:flex;justify-content:center;padding:16px}
+  .product{width:100%;max-height:320px}
+  .product img{width:100%;max-height:320px}
+
+  /* TIENDA */
+  .store{padding:35px 5%}
+  .store-head{flex-direction:column;align-items:flex-start;gap:16px}
+  .store-heading h2{font-size:28px}
+  .store-tools{width:100%;flex-direction:column;align-items:stretch;gap:10px}
+  .search-box{width:100%}
+  .store-tools select{width:100%;min-width:0}
+
+  .products-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .product-image{height:145px;padding:8px}
+  .product-info{padding:10px}
+  .product-info h3{font-size:13px}
+  .product-price{font-size:15px}
+  .product-price i{font-size:12px}
+  .add-cart{width:32px;height:32px;font-size:12px}
+  .product-quantity{font-size:10px}
 }
-nav::-webkit-scrollbar { display: none; } /* Oculta scroll en Chrome/Safari */
-nav a{font-size:12px;display:flex;align-items:center;gap:5px}
-nav a i{font-size:11px}
-nav a.active:after{bottom:-5px} /* Ajustado para el nuevo alto */
 
-.actions{gap:12px}
-.actions button{font-size:16px}
-.hero{padding:50px 5%;flex-direction:column;justify-content:center;align-items:flex-start;gap:35px}
-.content{max-width:100%}
-h1{font-size:48px;letter-spacing:-2px}
-.description{font-size:14px;margin:20px 0}
-.buttons{width:100%;flex-direction:column;align-items:stretch}
-.primary, .secondary{width:100%;display:flex;justify-content:center;padding:16px}
-.product{width:100%;max-height:350px}
-.product img{width:100%;max-height:350px}
-
-.store{padding:35px 5%}
-.store-head{flex-direction:column;align-items:flex-start;gap:16px}
-.store-heading h2{font-size:28px}
-.store-tools{width:100%;flex-direction:column;align-items:stretch;gap:10px}
-.search-box{width:100%}
-.store-tools select{width:100%;min-width:0}
-
-.products-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.product-image{height:145px;padding:8px}
-.product-info{padding:10px}
-.product-info h3{font-size:13px}
-.product-price{font-size:15px}
-.product-price i{font-size:12px}
-.add-cart{width:32px;height:32px;font-size:12px}
-.product-quantity{font-size:10px}
-}
+/* CELULARES MUY PEQUEÑOS */
 @media(max-width:430px){
-header{padding:0 3%;height:65px}
-.logo img{width:90px}
-nav{gap:12px}
-nav a{font-size:11px}
-.actions{gap:9px}
-.actions button{font-size:15px}
+  header{padding:0 10px; height:70px;}
+  .logo img{width:90px}
+  
+  nav{gap: 12px; margin: 0 5px;}
+  nav a{font-size: 12px;}
+  
+  h1{font-size:38px}
+  .hero{gap:20px}
 
-h1{font-size:38px}
-.hero{gap:25px}
-
-.products-grid{gap:9px}
-.product-image{height:125px;padding:6px}
-.product-info{padding:9px}
-.product-info h3{font-size:12px}
-.product-description{font-size:9.5px;height:28px}
-.product-price{font-size:13px}
-.add-cart{width:28px;height:28px;font-size:11px}
+  .products-grid{gap:9px}
+  .product-image{height:125px;padding:6px}
+  .product-info{padding:9px}
+  .product-info h3{font-size:12px}
+  .product-description{font-size:9.5px;height:28px}
+  .product-price{font-size:13px}
+  .add-cart{width:28px;height:28px;font-size:11px}
 }
 </style>
 </head>
