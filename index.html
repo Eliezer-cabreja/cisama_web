@@ -128,8 +128,18 @@ h1 span{color:#438eea}
 .loading,.empty,.error{grid-column:1/-1;text-align:center;padding:65px 15px;color:#8da1bb}
 .loading i{font-size:28px;color:#438eea;margin-bottom:15px}
 .empty i,.error i{font-size:35px;display:block;margin-bottom:15px;color:#438eea}
-.toast{position:fixed;bottom:25px;right:25px;background:#153354;border:1px solid #438eea;padding:15px 22px;border-radius:9px;color:white;z-index:300;transform:translateY(100px);opacity:0;transition:.3s;pointer-events:none;box-shadow:0 8px 25px #0005}
-.toast.show{transform:translateY(0);opacity:1}
+
+/* VISTAS EXTRA (NOSOTROS Y CONTACTO) */
+.extra-page { padding: 70px 9%; min-height: calc(100vh - 85px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.extra-page h2 { font-size: 42px; font-weight: 900; letter-spacing: -1px; margin-bottom: 20px; }
+.extra-page h2 span { color: #438eea; }
+.extra-page p { font-size: 16px; color: #9baac0; max-width: 600px; line-height: 1.8; margin-bottom: 30px; }
+.contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 800px; width: 100%; margin-top: 20px; }
+.contact-card { background: #0b1b30; border: 1px solid #1c3552; padding: 30px 20px; border-radius: 12px; transition: .3s; }
+.contact-card:hover { transform: translateY(-5px); border-color: #438eea; }
+.contact-card i { font-size: 30px; color: #438eea; margin-bottom: 15px; }
+.contact-card h3 { font-size: 16px; margin-bottom: 10px; }
+.contact-card p { font-size: 13px; color: #8fa3bd; margin-bottom: 0; }
 
 /* =========================================
    MODALES (PRODUCTO Y CARRITO)
@@ -154,9 +164,9 @@ h1 span{color:#438eea}
 .modal-content {
   background: #0d1c30;
   border: 1px solid #1a2c42;
-  border-radius: 16px;
+  border-radius: 14px; /* Reducido un poco */
   width: 100%;
-  max-width: 550px;
+  max-width: 420px; /* HECHO MÁS PEQUEÑO */
   box-shadow: 0 20px 50px #0009;
   transform: translateY(20px) scale(.95);
   transition: all .25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -167,22 +177,21 @@ h1 span{color:#438eea}
 .modal-overlay.show .modal-content { transform: translateY(0) scale(1); }
 
 /* Modal Producto (Estilo Foto) */
-.modal-producto { max-width: 500px; }
-.mp-header { padding: 24px 24px 10px; display: flex; gap: 16px; border-bottom: 1px solid #142436; padding-bottom: 20px;}
-.mp-img { width: 80px; height: 80px; border-radius: 10px; background: #071426; object-fit: contain; border: 1px solid #1a2c42; padding: 5px;}
-.mp-info h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
-.mp-price { font-size: 18px; font-weight: 800; color: #65cf9a; margin-bottom: 8px; }
-.mp-desc { font-size: 12px; color: #8fa3bd; line-height: 1.4;}
+.mp-header { padding: 20px 20px 10px; display: flex; gap: 14px; border-bottom: 1px solid #142436; padding-bottom: 16px;}
+.mp-img { width: 65px; height: 65px; border-radius: 8px; background: #071426; object-fit: contain; border: 1px solid #1a2c42; padding: 4px;}
+.mp-info h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.mp-price { font-size: 16px; font-weight: 800; color: #65cf9a; margin-bottom: 6px; }
+.mp-desc { font-size: 11px; color: #8fa3bd; line-height: 1.4;}
 
-.mp-body { padding: 20px 24px; overflow-y: auto; }
-.mp-label { font-size: 12px; font-weight: 700; color: #9bb0c9; margin-bottom: 12px; text-transform: uppercase; letter-spacing: .5px; }
+.mp-body { padding: 16px 20px; overflow-y: auto; }
+.mp-label { font-size: 11px; font-weight: 700; color: #9bb0c9; margin-bottom: 10px; text-transform: uppercase; letter-spacing: .5px; }
 
 /* Selector de tallas */
-.sizes-selector { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+.sizes-selector { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
 .size-btn {
-  flex: 1; min-width: 60px; height: 44px;
-  background: #071426; border: 1px solid #1a2c42; border-radius: 8px;
-  color: white; font-size: 14px; font-weight: 600;
+  flex: 1; min-width: 50px; height: 38px; /* MÁS PEQUEÑOS */
+  background: #071426; border: 1px solid #1a2c42; border-radius: 6px;
+  color: white; font-size: 13px; font-weight: 600;
   cursor: pointer; transition: .2s;
 }
 .size-btn:hover:not(:disabled) { border-color: #438eea; }
@@ -197,49 +206,49 @@ h1 span{color:#438eea}
 /* Info total */
 .total-info {
   display: flex; justify-content: space-between; align-items: center;
-  font-size: 13px; color: #8fa3bd; margin-bottom: 20px;
+  font-size: 12px; color: #8fa3bd; margin-bottom: 16px;
 }
 
 /* Botón grande carrito */
 .btn-add-cart {
-  width: 100%; height: 50px; background: white; color: #000;
-  border: none; border-radius: 10px; font-size: 14px; font-weight: 700;
+  width: 100%; height: 44px; background: white; color: #000;
+  border: none; border-radius: 8px; font-size: 13px; font-weight: 700;
   cursor: pointer; transition: .2s;
 }
 .btn-add-cart:hover { background: #e0e0e0; }
 .btn-add-cart:disabled { background: #34465d; color: #899bb5; cursor: not-allowed; }
 
 /* Modal Carrito Lateral */
-.modal-carrito { max-width: 400px; margin-left: auto; margin-right: 0; border-radius: 16px 0 0 16px; height: 100vh; max-height: 100vh; }
+.modal-carrito { max-width: 380px; margin-left: auto; margin-right: 0; border-radius: 14px 0 0 14px; height: 100vh; max-height: 100vh; }
 @media(max-width: 500px) { .modal-carrito { border-radius: 0; max-width: 100%; } }
 
-.mc-header { padding: 20px 24px; border-bottom: 1px solid #142436; display: flex; justify-content: space-between; align-items: center; }
-.mc-header h3 { font-size: 18px; font-weight: 700; }
+.mc-header { padding: 18px 20px; border-bottom: 1px solid #142436; display: flex; justify-content: space-between; align-items: center; }
+.mc-header h3 { font-size: 17px; font-weight: 700; }
 .mc-close { background: transparent; border: none; color: #9bb0c9; font-size: 18px; cursor: pointer; transition: .2s; }
 .mc-close:hover { color: white; }
 
-.mc-body { flex: 1; overflow-y: auto; padding: 20px 24px; display: flex; flex-direction: column; gap: 16px; }
+.mc-body { flex: 1; overflow-y: auto; padding: 16px 20px; display: flex; flex-direction: column; gap: 14px; }
 .mc-empty { text-align: center; color: #7f93ad; margin-top: 40px; }
 .mc-empty i { font-size: 40px; color: #1a2c42; margin-bottom: 12px; }
 
 /* Item del carrito */
 .cart-item { display: flex; gap: 12px; background: #071426; border: 1px solid #1a2c42; border-radius: 10px; padding: 12px; }
-.ci-img { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; background: #0d1c30; border: 1px solid #1a2c42; }
+.ci-img { width: 55px; height: 55px; border-radius: 8px; object-fit: cover; background: #0d1c30; border: 1px solid #1a2c42; }
 .ci-info { flex: 1; }
-.ci-title { font-size: 13.5px; font-weight: 700; color: #f1f6ff; margin-bottom: 4px; }
-.ci-meta { font-size: 12px; color: #8fa3bd; margin-bottom: 8px; }
-.ci-price { font-size: 14px; font-weight: 800; color: #65cf9a; }
+.ci-title { font-size: 13px; font-weight: 700; color: #f1f6ff; margin-bottom: 4px; }
+.ci-meta { font-size: 11.5px; color: #8fa3bd; margin-bottom: 6px; }
+.ci-price { font-size: 13.5px; font-weight: 800; color: #65cf9a; }
 .btn-remove { background: transparent; border: none; color: #ff4d4d; cursor: pointer; font-size: 14px; padding: 4px; transition: .2s; }
 .btn-remove:hover { transform: scale(1.1); }
 
-.mc-footer { padding: 20px 24px; border-top: 1px solid #142436; background: #0a1626; }
-.mc-total { display: flex; justify-content: space-between; font-size: 18px; font-weight: 800; margin-bottom: 16px; color: white; }
+.mc-footer { padding: 18px 20px; border-top: 1px solid #142436; background: #0a1626; }
+.mc-total { display: flex; justify-content: space-between; font-size: 17px; font-weight: 800; margin-bottom: 14px; color: white; }
 .mc-total span:last-child { color: #65cf9a; }
-.btn-checkout { width: 100%; height: 48px; background: #2476d9; color: white; border: none; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer; transition: .2s; }
+.btn-checkout { width: 100%; height: 44px; background: #2476d9; color: white; border: none; border-radius: 8px; font-weight: 700; font-size: 13.5px; cursor: pointer; transition: .2s; }
 .btn-checkout:hover { background: #2f8bf0; }
 
 /* Toast */
-.toast{position:fixed;bottom:25px;left:50%;transform:translate(-50%, 100px);background:#153354;border:1px solid #438eea;padding:14px 22px;border-radius:30px;color:white;z-index:1100;opacity:0;transition:.3s;pointer-events:none;box-shadow:0 8px 25px #0005; font-size:14px; font-weight:600; display:flex; align-items:center; gap:10px;}
+.toast{position:fixed;bottom:25px;left:50%;transform:translate(-50%, 100px);background:#153354;border:1px solid #438eea;padding:12px 20px;border-radius:30px;color:white;z-index:1100;opacity:0;transition:.3s;pointer-events:none;box-shadow:0 8px 25px #0005; font-size:13px; font-weight:600; display:flex; align-items:center; gap:8px;}
 .toast i{ color:#65cf9a; }
 .toast.show{transform:translate(-50%, 0);opacity:1;}
 
@@ -255,9 +264,9 @@ h1 span{color:#438eea}
 @media(max-width:850px){
   header{padding:0 15px;height:75px;}
   .logo img{width:110px}
-  nav{flex: 1;display: flex;justify-content: center;gap: 18px;overflow-x: auto;padding: 10px 0;margin: 0 10px;scrollbar-width: none;}
+  nav{flex: 1;display: flex;justify-content: center;gap: 15px;overflow-x: auto;padding: 10px 0;margin: 0 10px;scrollbar-width: none;}
   nav::-webkit-scrollbar{display:none}
-  nav a{font-size: 14px;font-weight: 600;white-space: nowrap;}
+  nav a{font-size: 13px;font-weight: 600;white-space: nowrap;}
   nav a i{display: none;}
   nav a.active:after{bottom: -10px;height: 3px;border-radius: 3px;}
   .actions{gap:12px}
@@ -287,13 +296,16 @@ h1 span{color:#438eea}
   .product-price i{font-size:12px}
   .add-cart{width:32px;height:32px;font-size:12px}
   .product-quantity{font-size:10px}
+
+  .extra-page { padding: 50px 5%; }
+  .contact-grid { grid-template-columns: 1fr; }
 }
 
 @media(max-width:430px){
   header{padding:0 10px; height:70px;}
   .logo img{width:90px}
   nav{gap: 12px; margin: 0 5px;}
-  nav a{font-size: 12px;}
+  nav a{font-size: 11px;}
   h1{font-size:38px}
   .hero{gap:20px}
   .products-grid{gap:9px}
@@ -303,6 +315,7 @@ h1 span{color:#438eea}
   .product-description{font-size:9.5px;height:28px}
   .product-price{font-size:13px}
   .add-cart{width:28px;height:28px;font-size:11px}
+  .extra-page h2 { font-size: 32px; }
 }
 </style>
 </head>
@@ -317,8 +330,8 @@ h1 span{color:#438eea}
   <nav>
     <a class="active" data-page="inicio"><i class="fa-solid fa-house"></i> Inicio</a>
     <a data-page="tienda"><i class="fa-solid fa-store"></i> Tienda</a>
-    <a href="#"><i class="fa-solid fa-layer-group"></i> Colección</a>
-    <a href="#"><i class="fa-solid fa-envelope"></i> Contacto</a>
+    <a data-page="nosotros"><i class="fa-solid fa-users"></i> Sobre Nosotros</a>
+    <a data-page="contacto"><i class="fa-solid fa-envelope"></i> Contacto</a>
   </nav>
 
   <div class="actions">
@@ -380,6 +393,44 @@ h1 span{color:#438eea}
       </div>
     </div>
 
+  </main>
+</section>
+
+<!-- SOBRE NOSOTROS -->
+<section class="page" id="nosotros">
+  <main class="extra-page">
+    <i class="fa-solid fa-graduation-cap" style="font-size:50px;color:#438eea;margin-bottom:20px;"></i>
+    <h2>Sobre <span>Nosotros</span></h2>
+    <p>
+      Somos el Centro Educativo Cisama, una institución dedicada a la formación integral de estudiantes con valores sólidos, conocimientos profundos y un compromiso con el futuro. 
+      A través de nuestra tienda oficial, buscamos facilitar a nuestros alumnos y familias el acceso a los uniformes y materiales necesarios para su desarrollo académico.
+    </p>
+  </main>
+</section>
+
+<!-- CONTACTO -->
+<section class="page" id="contacto">
+  <main class="extra-page">
+    <h2>Contácta<span>nos</span></h2>
+    <p>¿Tienes alguna pregunta sobre un producto o necesitas ayuda con tu pedido? Aquí estamos para servirte.</p>
+    
+    <div class="contact-grid">
+      <div class="contact-card">
+        <i class="fa-solid fa-phone"></i>
+        <h3>Llámanos</h3>
+        <p>+1 (809) 555-1234<br>Lun a Vie, 8:00 AM - 4:00 PM</p>
+      </div>
+      <div class="contact-card">
+        <i class="fa-solid fa-envelope"></i>
+        <h3>Escríbenos</h3>
+        <p>soporte@cisama.edu.do<br>tienda@cisama.edu.do</p>
+      </div>
+      <div class="contact-card">
+        <i class="fa-solid fa-location-dot"></i>
+        <h3>Visítanos</h3>
+        <p>Av. Principal #123<br>Cisama, República Dominicana</p>
+      </div>
+    </div>
   </main>
 </section>
 
@@ -561,13 +612,11 @@ function abrirModalProducto(id) {
   productoSeleccionado = p;
   tallaSeleccionada = null;
 
-  // Llenar datos
   document.getElementById('mp-img').src = p.image;
   document.getElementById('mp-title').textContent = p.name;
   document.getElementById('mp-price').textContent = 'RD$ ' + p.price.toLocaleString('es-DO');
   document.getElementById('mp-desc').textContent = p.description;
 
-  // Renderizar botones de tallas
   const sizesContainer = document.getElementById('mp-sizes');
   sizesContainer.innerHTML = '';
   
@@ -602,7 +651,6 @@ function abrirModalProducto(id) {
 
   document.getElementById('mp-total-stock').textContent = totalStock;
   
-  // Deshabilitar boton de agregar si no hay stock total
   const btnAdd = document.getElementById('btnAddToCart');
   btnAdd.disabled = true;
   btnAdd.textContent = totalStock <= 0 ? 'Producto Agotado' : 'Selecciona una talla';
@@ -620,22 +668,18 @@ function cerrarModalProducto() {
 function seleccionarTalla(talla, btnElement) {
   tallaSeleccionada = talla;
   
-  // Quitar clase selected a todos
   document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
-  // Poner al actual
   btnElement.classList.add('selected');
 
-  // Actualizar botón de agregar
   const btnAdd = document.getElementById('btnAddToCart');
   btnAdd.disabled = false;
-  btnAdd.textContent = `Agregar al carrito - RD$ ${productoSeleccionado.price.toLocaleString('es-DO')}`;
+  btnAdd.textContent = `Agregar - RD$ ${productoSeleccionado.price.toLocaleString('es-DO')}`;
 }
 
 function confirmarAgregarAlCarrito() {
   if(!productoSeleccionado || !tallaSeleccionada) return;
 
   const id_unico = `${productoSeleccionado.id}-${tallaSeleccionada}`;
-
   const existente = carrito.find(item => item.id_unico === id_unico);
 
   if(existente) {
@@ -657,7 +701,6 @@ function confirmarAgregarAlCarrito() {
   mostrarToast(`Agregado: ${productoSeleccionado.name} (${tallaSeleccionada})`);
 }
 
-// Cerrar modales al hacer clic afuera
 document.querySelectorAll('.modal-overlay').forEach(overlay => {
   overlay.addEventListener('click', (e) => {
     if(e.target === overlay) {
@@ -700,7 +743,6 @@ async function cargarProductos(){
     const data=await respuesta.json();
     if(!data || !Array.isArray(data.productos)) throw new Error('La respuesta no contiene un arreglo de productos');
 
-    // Mapeo de datos (manteniendo las nuevas tallas)
     productos = data.productos.map(p=>({
       id: p.id,
       name: String(p.name || ''),
@@ -782,7 +824,6 @@ function mostrarProductos(){
     const card=document.createElement('article');
     card.className='product-card';
 
-    // Sumamos el stock total para mostrarlo en la tarjeta
     const stockTotal = (p.cantidad_XS + p.cantidad_S + p.cantidad_M + p.cantidad_L + p.cantidad_XL + p.cantidad_XXL);
 
     const imagen=document.createElement('div');
@@ -833,7 +874,6 @@ function mostrarProductos(){
   });
 }
 
-// FILTROS
 document.getElementById('productSearch').addEventListener('input',mostrarProductos);
 document.getElementById('categoryFilter').addEventListener('change',mostrarProductos);
 
